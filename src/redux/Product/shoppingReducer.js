@@ -7,6 +7,7 @@ const INITIAL_STATE = {
         { id: 3, name: "Dell E1916HV 18.5 Inch ", price: 9800, quantity: 35, image: "https://i.ibb.co/6DqypNC/e1916h-1-500x500.jpg" },
         { id: 4, name: "Canon Eos 4000D 18MP", price: 36000, quantity: 40, image: "https://i.ibb.co/V3NWHQ4/4000d-1-500x500.jpg" },
     ],
+    cart: []
 }
 
 
@@ -14,11 +15,34 @@ const INITIAL_STATE = {
 const shopReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ADD_TO_CART:
+            // Great Item data from products array
+            const item = state.products.find(
+                (product) => product.id === action.payload.id
+            );
+            console.log('hello')
+            // Check if Item is in cart already
+            const inCart = state.cart.find((item) =>
+                item.id === action.payload.id ? true : false
+            );
 
-            return
+            return {
+                ...state,
+                cart: inCart
+                    ? state.cart.map((item) =>
+                        item.id === action.payload.id
+                            ? { ...item, cartQty: item.cartQty + 1 }
+                            : item
+                    )
+                    : [...state.cart, { ...item, cartQty: 1 }],
+                products: state.products.map((item) =>
+                    item.id === action.payload.id
+                        ? { ...item, quantity: item.quantity - 1 } : item
+                )
+            };
         case ADJUST_QUANTITY:
             return
         case REMOVE_PRODUCT:
+
             return
         default:
             return state
