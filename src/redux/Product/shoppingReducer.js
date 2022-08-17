@@ -1,4 +1,4 @@
-import { ADD_TO_CART, ADJUST_QUANTITY, REMOVE_PRODUCT } from './shoppingType.js'
+import { ADD_TO_CART, ADJUST_QUANTITY_INCREMENT, REMOVE_PRODUCT } from './shoppingType.js'
 const INITIAL_STATE = {
     // allProducts -----------------
     products: [
@@ -39,11 +39,18 @@ const shopReducer = (state = INITIAL_STATE, action) => {
                         ? { ...item, quantity: item.quantity - 1 } : item
                 )
             };
-        case ADJUST_QUANTITY:
+        case ADJUST_QUANTITY_INCREMENT:
             return
         case REMOVE_PRODUCT:
+            console.log(action.payload.qty)
+            return {
 
-            return
+                ...state,
+                cart: state.cart.filter((item) => item.id !== action.payload.id),
+                products: state.products.map((item) =>
+                    item.id === action.payload.id
+                        ? { ...item, quantity: item.quantity + action.payload.qty } : item)
+            };
         default:
             return state
     }

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, ADJUST_QUANTITY, REMOVE_PRODUCT } from './shoppingType.js'
+import { ADD_TO_CART, ADJUST_QUANTITY_INCREMENT, ADJUST_QUANTITY_DECREMENT, REMOVE_PRODUCT } from './shoppingType.js'
 
 export const addToCart = (itemId) => {
     return {
@@ -8,19 +8,30 @@ export const addToCart = (itemId) => {
         }
     }
 }
-export const adjustQuantity = (itemId) => {
+export const adjustIncrement = (itemId) => {
     return {
-        type: ADJUST_QUANTITY,
+        type: ADJUST_QUANTITY_INCREMENT,
         payload: {
-            id: itemId
+            id: itemId,
+
         }
     }
 }
-export const removeProduct = (itemId) => {
+export const adjustDecrement = (itemId) => {
+    return {
+        type: ADJUST_QUANTITY_DECREMENT,
+        payload: {
+            id: itemId,
+
+        }
+    }
+}
+export const removeProduct = (itemId, qty) => {
     return {
         type: REMOVE_PRODUCT,
         payload: {
-            id: itemId
+            id: itemId,
+            qty: qty
         }
     }
 }
