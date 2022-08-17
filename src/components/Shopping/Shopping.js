@@ -15,7 +15,7 @@ const Shopping = ({ products }) => {
 
                 </div>
                 <div className='w-[40%]'>
-                    <h2 className='text-center text-white font-semibold text-xl'>Cart</h2>
+
                     <Cart />
                 </div>
             </div>

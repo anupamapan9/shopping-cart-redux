@@ -4,10 +4,16 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/Product/shoppingAction'
 const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
-    const handelAddToCart = (id) => {
-        dispatch(addToCart(id))
-    }
     const { name, price, quantity, image, id } = product;
+    const handelAddToCart = (id) => {
+        if (quantity > 0) {
+            dispatch(addToCart(id))
+        } else {
+            alert('Sorry Product is out of stock')
+        }
+
+    }
+
 
     return (
         <div className='flex justify-evenly gap-9 bg-transparent items-center rounded shadow-lg shadow-black my-10 py-5  text-white font-semibold'>
