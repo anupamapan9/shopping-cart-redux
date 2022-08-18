@@ -11,14 +11,16 @@ const CartItem = ({ cart }) => {
     const handelRemoveFromCart = (itemId, qty) => {
         dispatch(removeProduct(itemId, qty))
     }
-    const handelDecrement = (itemId) => {
-        if (quantity > cartQty) {
+    const handelDecrement = (itemId, qty) => {
+        if (cartQty > 1) {
             dispatch(adjustDecrement(itemId))
+        } else {
+            dispatch(removeProduct(itemId, qty))
         }
 
     }
     const handelIncrement = (itemId) => {
-        if (cartQty > 1) {
+        if (quantity > cartQty) {
             dispatch(adjustIncrement(itemId))
         }
 
@@ -29,10 +31,10 @@ const CartItem = ({ cart }) => {
                 <img className='rounded-lg w-14 h-14' src={image} alt="" /></div>
             <div className='flex gap-3'>
 
-                <button onClick={() => handelIncrement(id)} className='text-[#7e3fddd4] rounded-full bg-white shadow-2xl p-2 shadow-red-800 '><AiFillMinusCircle /></button>
+                <button onClick={() => handelDecrement(id, cartQty)} className='text-[#7e3fddd4] rounded-full bg-white shadow-2xl p-2 shadow-red-800 '><AiFillMinusCircle /></button>
 
                 <h3 className='text-2xl'>{cartQty}</h3>
-                <button onClick={() => handelDecrement(id)} className='text-[#7e3fddd4] rounded-full bg-white shadow-2xl p-2 shadow-red-800 '><BsFillPlusCircleFill /></button>
+                <button onClick={() => handelIncrement(id)} className='text-[#7e3fddd4] rounded-full bg-white shadow-2xl p-2 shadow-red-800 '><BsFillPlusCircleFill /></button>
             </div>
             <button onClick={() => handelRemoveFromCart(id, cartQty)} className='text-[#ff0202] rounded-full text-xl bg-white shadow-2xl p-2 shadow-red-800 '>
                 <MdDelete />
