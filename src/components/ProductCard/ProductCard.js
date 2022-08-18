@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
 
 
     return (
-        <div className='flex justify-evenly gap-9 bg-transparent items-center rounded shadow-lg shadow-black my-10 py-5  text-white font-semibold'>
+        <div className='flex justify-evenly gap-9 bg-transparent items-center rounded shadow-lg shadow-black my-10 py-5 px-2 text-white font-semibold'>
             <div className='w-14 h-14 rounded-lg'><img className='rounded-lg w-14 h-14' src={image} alt="" /></div>
             <div><h1>{name}</h1></div>
             <div><h1>$ {price} </h1></div>

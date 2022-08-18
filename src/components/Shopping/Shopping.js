@@ -3,18 +3,17 @@ import { connect } from 'react-redux'
 import Cart from '../Cart/Cart';
 import ProductCard from '../ProductCard/ProductCard';
 const Shopping = ({ products }) => {
-    console.log(products)
     return (
-        <section className='h-[90vh] bg-gradient-to-r from-[#19163A] via-[#19163A] to-[#0A2238]'>
-            <div className='max-w-6xl flex gap-5 m-auto'>
+        <section className='min:h-[92vh] bg-gradient-to-r from-[#645ead] via-[#2d2b43] to-[#20272e]'>
+            <div className='max-w-6xl flex flex-col h-full md:flex-row gap-5 m-auto'>
 
-                <div className='w-[60%] h-6'>
+                <div className='md:w-[60%] mx-2'>
                     {
                         products.map(product => <ProductCard product={product} key={product.id} />)
                     }
 
                 </div>
-                <div className='w-[40%]'>
+                <div className='md:w-[40%] mx-2'>
 
                     <Cart />
                 </div>
